@@ -6,12 +6,9 @@ function nestedTarget() {
   return document.querySelector('#nested .target');
 }
 
-function increaseRankBy(n) {
-  const list = document.quarySelectorAll('ul.ranked-list li')
-  for (var i = 0; i < list.length; i++) {
-      list[i].innerHTML = parseInt(list[i].innerHTML) + n;
-    }
-  }
+describe('nestedTarget()', () => {
+    it('pulls a .target out of #nested', () => {
+      expect(nestedTarget()).to.equal(document.querySelector('#nested .target'))
 
 function deepestChild() {
   let gNode = document.querySelector('#grand-node')
@@ -24,29 +21,17 @@ function deepestChild() {
   return (gNode);
 }
 
-
-
-//instructions/
-describe('index', () => {
-  describe('getFirstSelector(selector)', () => {
-    it('returns the first element that matches the selector', () => {
-      expect(getFirstSelector('div').id).to.equal('nested')
-      expect(getFirstSelector('.ranked-list')).to.equal(document.querySelector('.ranked-list'))
-    })
-  })
-
-  describe('nestedTarget()', () => {
-    it('pulls a .target out of #nested', () => {
-      expect(nestedTarget()).to.equal(document.querySelector('#nested .target'))
-    })
-  })
-
-  describe('deepestChild()', () => {
+describe('deepestChild()', () => {
     it('returns the most deeply nested child in #grand-node', () => {
       console.log(deepestChild().innerHTML)
       expect(deepestChild()).to.equal(document.querySelector('#grand-node div div div div'))
-    })
-  })
+
+function increaseRankBy(n) {
+  const list = document.quarySelectorAll('ul.ranked-list li')
+  for (var i = 0; i < list.length; i++) {
+      list[i].innerHTML = parseInt(list[i].innerHTML) + n;
+    }
+  }
 
   describe('increaseRankBy(n)', () => {
     it('increases ranks in .ranked-list by n', () => {
@@ -67,7 +52,4 @@ describe('index', () => {
 
       for (let i = 0, l = children.length; i < l; i++) {
         expect(parseInt(children[i].innerHTML)).to.equal(start - i + 3)
-      }
-    })
-  })
-})
+     
